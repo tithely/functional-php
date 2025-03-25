@@ -33,10 +33,21 @@ jobs:
                   coverage: pcov
                   tools: composer:v2
 
-            - name: Install Composer dependencies
-              uses: ramsey/composer-install@v1
+            - name: Validate composer.json and composer.lock
+              run: composer validate
+
+            - name: Cache Composer packages
+              id: composer-cache
+              uses: actions/cache@v3
               with:
-                  composer-options: --prefer-dist
+                path: vendor
+                key: ${{ runner.os }}-${{ matrix.php-versions }}-composer-${{ hashFiles('**/composer.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-${{ matrix.php-versions }}-composer
+
+            - name: Install dependencies
+              if: steps.composer-cache.outputs.cache-hit != 'true'
+              run: composer install --prefer-dist --no-progress
 
             - name: Setup PCOV
               run: |
