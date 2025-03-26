@@ -134,8 +134,7 @@
     "scripts": {
         "docker:start": "docker compose -p functional-php -f docker/docker-compose.yml up -d",
         "docker:stop": "docker compose -p functional-php -f docker/docker-compose.yml down",
-        "docker:rebuild": "docker compose -p functional-php -f docker/docker-compose.yml build --force-rm && docker-compose -p functional-php -f docker/docker-compose.yml up -d --remove-orphans",
-        "docker:rebuild:nocache": "docker compose  -p functional-php -f docker/docker-compose.yml build --force-rm --no-cache && docker-compose -p functional-php -f docker/docker-compose.yml up -d --remove-orphans",
+        "docker:rebuild": "docker compose -p functional-php -f docker/docker-compose.yml build --force-rm --no-cache && docker-compose -p functional-php -f docker/docker-compose.yml up -d --remove-orphans",
         "tests": "vendor/bin/phpunit",
         "coding-style": "vendor/bin/phpcs && vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs.dist",
         "clear": "rm -rf vendor/"
