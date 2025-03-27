@@ -18,7 +18,7 @@ namespace Functional;
  * @return callable
  * @no-named-arguments
  */
-function compare_object_hash_on(callable $comparison, callable $keyFunction = null)
+function compare_object_hash_on(callable $comparison, ?callable $keyFunction = null)
 {
     $keyFunction = $keyFunction ? compose($keyFunction, 'spl_object_hash') : 'spl_object_hash';
 

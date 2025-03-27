@@ -18,7 +18,7 @@ namespace Functional;
  * @return callable
  * @no-named-arguments
  */
-function compare_on(callable $comparison, callable $reducer = null)
+function compare_on(callable $comparison, ?callable $reducer = null)
 {
     if ($reducer === null) {
         return static function ($left, $right) use ($comparison) {
