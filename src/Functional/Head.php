@@ -21,7 +21,7 @@ use Traversable;
  * @return mixed
  * @no-named-arguments
  */
-function head($collection, callable $callback = null)
+function head($collection, ?callable $callback = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
