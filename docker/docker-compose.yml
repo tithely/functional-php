@@ -1,17 +1,7 @@
 services:
-    php_83:
-        build:
-            dockerfile: docker/php/php83.Dockerfile
-            context: ../
-        container_name: functional_php_83
-        environment:
-            - PCOV_ENABLED=1
-            - PCOV_DIRECTORY=/app/src
-        volumes:
-            - ../:/app
     php_84:
         build:
-            dockerfile: docker/php/php84.Dockerfile
+            dockerfile: docker/84.Dockerfile
             context: ../
         container_name: functional_php_84
         environment:
