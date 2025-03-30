@@ -22,7 +22,7 @@ use Traversable;
  * @return array
  * @no-named-arguments
  */
-function unique($collection, callable $callback = null, $strict = true)
+function unique($collection, ?callable $callback = null, $strict = true)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
