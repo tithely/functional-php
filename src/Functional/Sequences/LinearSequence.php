@@ -44,7 +44,7 @@ class LinearSequence implements Iterator
         $this->value += $this->amount;
     }
 
-    public function key(): null
+    public function key(): mixed
     {
         return 0;
     }
