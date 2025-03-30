@@ -49,7 +49,7 @@ class ExponentialSequence implements Iterator
         $this->times++;
     }
 
-    public function key(): null
+    public function key(): mixed
     {
         return null;
     }
