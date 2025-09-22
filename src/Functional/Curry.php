@@ -22,6 +22,7 @@ use Closure;
  * @param bool $required curry optional parameters ?
  * @return callable a curryied version of the given function
  * @no-named-arguments
+ * @throws \ReflectionException
  */
 function curry(callable $function, $required = true)
 {
