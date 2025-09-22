@@ -33,8 +33,8 @@ function group($collection, callable $callback)
         InvalidArgumentException::assertValidArrayKey($groupKey, __FUNCTION__);
 
         // Avoid implicit conversion, since float numbers cannot be used as array keys
-        if (is_numeric($groupKey)) {
-            $groupKey = intval($groupKey);
+        if (\is_numeric($groupKey)) {
+            $groupKey = (int) $groupKey;
         }
 
         if (!isset($groups[$groupKey])) {

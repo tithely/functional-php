@@ -253,58 +253,58 @@ final class Functional
     const less_than_or_equal = '\Functional\less_than_or_equal';
 
     /**
-     * @see \Functional\lexicographic_compare
+     * @see lexicographic_compare
      */
     const lexicographic_compare = '\Functional\lexicographic_compare';
 
     /**
-     * @see \Functional\map
+     * @see map
      */
     const map = '\Functional\map';
 
     /**
-     * @see \Functional\matching
+     * @see matching
      * @deprecated
      */
     const match = '\Functional\match';
 
     /**
-     * @see \Functional\matching
+     * @see matching
      */
     const matching = '\Functional\matching';
 
     /**
-     * @see \Functional\maximum
+     * @see maximum
      */
     const maximum = '\Functional\maximum';
 
     /**
-     * @see \Functional\memoize
+     * @see memoize
      */
     const memoize = '\Functional\memoize';
 
     /**
-     * @see \Functional\minimum
+     * @see minimum
      */
     const minimum = '\Functional\minimum';
 
     /**
-     * @see \Functional\none
+     * @see none
      */
     const none = '\Functional\none';
 
     /**
-     * @see \Functional\noop
+     * @see noop
      */
     const noop = '\Functional\noop';
 
     /**
-     * @see \Functional\not
+     * @see not
      */
     const not = '\Functional\not';
 
     /**
-     * @see \Functional\omit_keys
+     * @see omit_keys
      */
     const omit_keys = '\Functional\omit_keys';
 
