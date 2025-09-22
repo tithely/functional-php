@@ -1,0 +1,17 @@
+services:
+  functional_php_84:
+    build:
+      dockerfile: docker/php/84.Dockerfile
+      context: ../
+    container_name: functional_php_84
+    volumes:
+      - ../:/app
+    networks:
+      - tithely_hub_code-network
+    environment:
+      - CONF_DISABLED=xdebug
+      - PCOV_ENABLED=1
+      - PCOV_DIRECTORY=/app
+networks:
+    tithely_hub_code-network:
+        external: true
