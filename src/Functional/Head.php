@@ -17,7 +17,7 @@ use Traversable;
  * Alias for Functional\first
  *
  * @param Traversable|array $collection
- * @param callable $callback
+ * @param callable|null $callback
  * @return mixed
  * @no-named-arguments
  */

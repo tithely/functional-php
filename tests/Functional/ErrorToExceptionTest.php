@@ -71,7 +71,7 @@ class ErrorToExceptionTest extends AbstractTestCase
         try {
             $fn();
             self::fail('ErrorException expected');
-        } catch (ErrorException $e) {
+        } catch (ErrorException) {
             self::assertNull($errorMessage);
         }
 
