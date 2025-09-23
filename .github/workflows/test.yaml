@@ -51,7 +51,7 @@ jobs:
               continue-on-error: true
 
             - name: Run Tests
-              run: composer tests
+              run: composer test
 
             - name: Check coding style
               run: composer lint:scan
