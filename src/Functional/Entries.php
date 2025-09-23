@@ -17,7 +17,7 @@ use Traversable;
  * Inspired by JavaScript’s `Object.entries`, and Python’s `enumerate`,
  * convert a key-value map into an array of key-value pairs
  *
- * @see Functional\from_entries
+ * @see from_entries
  * @param Traversable|array $collection
  * @param int $start
  * @return array

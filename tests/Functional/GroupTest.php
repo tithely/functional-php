@@ -38,11 +38,25 @@ class GroupTest extends AbstractTestCase
         self::assertSame(['' => ['k1' => 'val1', 'k3' => 'val3'], 'foo' => ['k2' => 'val2']], group($this->hashIterator, $fn));
     }
 
+    public function testFloatKeys(): void
+    {
+        $hashWithFloat = [1 => 'val1', (int) 2.1 => 'val2', 3 => 'val3'];
+        $localHashIterator = new ArrayIterator($hashWithFloat);
+
+        $fn = function ($v, $k, $collection) {
+            InvalidArgumentException::assertCollection($collection, __FUNCTION__, 3);
+            return (\is_int($k) ? ($k % 2 == 0) : ($v[3] % 2 == 0)) ? 'foo' : '';
+        };
+
+        self::assertSame(['' => [1 => 'val1', 3 => 'val3'], 'foo' => [2 => 'val2']], group($hashWithFloat, $fn));
+        self::assertSame(['' => [1 => 'val1', 3 => 'val3'], 'foo' => [2 => 'val2']], group($localHashIterator, $fn));
+    }
+
     public function testExceptionIsThrownWhenCallbacksReturnsInvalidKey(): void
     {
         $array = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6'];
         $keyMap = [true, 1, -1, 2.1, 'str', null];
-        $fn = function ($v, $k, $collection) use (&$keyMap) {
+        $fn = function ($v, $k) use (&$keyMap) {
             return $keyMap[$k];
         };
         $result = [
@@ -117,5 +131,29 @@ class GroupTest extends AbstractTestCase
     {
         $this->expectCallableArgumentError('Functional\group', 2);
         group($this->list, 'undefinedFunction');
+    }
+
+    public function testFloatGroupKeysAreBeingCastToInteger(): void
+    {
+        $values = [5, 10, 11, 15];
+        $fn = function ($v) {
+            return $v / 5;
+        };
+
+        $actual = group($values, $fn);
+        $expected = [
+            1 => [
+                0 => 5
+            ],
+            2 => [
+                1 => 10,
+                2 => 11
+            ],
+            3 => [
+                3 => 15
+            ]
+        ];
+
+        self::assertEquals($expected, $actual);
     }
 }

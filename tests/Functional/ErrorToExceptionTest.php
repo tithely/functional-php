@@ -22,7 +22,7 @@ class ErrorToExceptionTest extends AbstractTestCase
     public function testErrorIsThrownAsException(): void
     {
         $origFn = function () {
-            \trigger_error('Some error', E_USER_ERROR);
+            \trigger_error('Some error', E_USER_DEPRECATED);
         };
 
         $fn = error_to_exception($origFn);
@@ -71,7 +71,7 @@ class ErrorToExceptionTest extends AbstractTestCase
         try {
             $fn();
             self::fail('ErrorException expected');
-        } catch (ErrorException $e) {
+        } catch (ErrorException) {
             self::assertNull($errorMessage);
         }
 

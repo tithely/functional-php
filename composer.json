@@ -1,5 +1,5 @@
 {
-    "name": "lstrojny/functional-php",
+    "name": "tithely/functional-php",
     "description": "Functional primitives for PHP",
     "keywords": [
         "functional"
@@ -17,12 +17,12 @@
         }
     ],
     "require": {
-        "php": "^7.1|~8"
+        "php": "^8.4"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~3.0",
-        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.5",
-        "friendsofphp/php-cs-fixer": "^2.17"
+        "phpunit/phpunit": "^9.6",
+        "friendsofphp/php-cs-fixer": "v3.84"
     },
     "autoload": {
         "psr-4": {
@@ -132,8 +132,16 @@
         }
     },
     "scripts": {
-        "tests": "vendor/bin/phpunit",
-        "coding-style": "vendor/bin/phpcs && vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs.dist",
-        "clear": "rm -rf vendor/"
+        "test": "vendor/bin/phpunit",
+        "test:84": "docker exec -w /app functional_php_84 ./vendor/bin/phpunit --colors=always --no-coverage",
+        "lint:scan": "vendor/bin/php-cs-fixer fix src --config=.php-cs-fixer.dist.php --dry-run",
+        "lint:fix": "vendor/bin/php-cs-fixer fix src --config=.php-cs-fixer.dist.php",
+        "clear": "rm -rf vendor/",
+        "clean-vendor": "rm -rf vendor && rm -rf composer.lock",
+        "docker:start": "docker compose -p functional_php -f docker/docker-compose.yml up -d",
+        "docker:stop": "docker compose -p functional_php -f docker/docker-compose.yml down",
+        "docker:rebuild": "docker compose -p functional_php -f docker/docker-compose.yml build --force-rm && docker-compose -p functional_php -f docker/docker-compose.yml up -d --remove-orphans",
+        "docker:rebuild:nocache": "docker compose -p functional_php -f docker/docker-compose.yml build --force-rm --no-cache && docker-compose -p functional_php -f docker/docker-compose.yml up -d --remove-orphans",
+        "docker:shell": "docker exec -w /app -it functional_php_84 /bin/bash"
     }
 }

@@ -13,7 +13,7 @@ namespace Functional;
 /**
  * Concatenates zero or more strings
  *
- * @param string[] ...$strings
+ * @param string ...$strings
  * @return string
  * @no-named-arguments
  */

@@ -23,7 +23,7 @@ use Traversable;
  * @return mixed
  * @no-named-arguments
  */
-function first($collection, callable $callback = null)
+function first($collection, ?callable $callback = null)
 {
     InvalidArgumentException::assertCollection($collection, __FUNCTION__, 1);
 
