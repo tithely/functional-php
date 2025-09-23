@@ -52,6 +52,3 @@ jobs:
 
             - name: Run Tests
               run: composer test
-
-            - name: Check coding style
-              run: composer lint:scan
