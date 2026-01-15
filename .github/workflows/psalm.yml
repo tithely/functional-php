@@ -25,7 +25,7 @@ jobs:
       - name: Set up PHP with required extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.4
 
       - name: Setup Composer Access
         run: composer config -g github-oauth.github.com ${{ secrets.ACTIONS_ACCESS_TOKEN }}
