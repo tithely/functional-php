@@ -22,7 +22,7 @@ collection](http://www.scala-lang.org/archives/downloads/distrib/files/nightly/d
 
 Run the following command in your project root:
 
-    composer require lstrojny/functional-php
+    composer require tithely/functional-php
 
 ## Docs
 
