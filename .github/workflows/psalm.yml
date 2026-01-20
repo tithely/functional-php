@@ -1,0 +1,42 @@
+name: Psalm Security Scan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "qa", "main" ]
+  pull_request:
+    branches: [ "qa", "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  php-security:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP with required extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+
+      - name: Setup Composer Access
+        run: composer config -g github-oauth.github.com ${{ secrets.ACTIONS_ACCESS_TOKEN }}
+
+      - name: Install Dependencies
+        run: composer install
+
+      - name: Run Psalm Security Scan
+        run: vendor/bin/psalm --taint-analysis --output-format=sarif > results.sarif
+
+      - name: Upload Security Analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
